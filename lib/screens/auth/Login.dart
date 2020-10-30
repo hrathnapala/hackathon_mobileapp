@@ -123,7 +123,7 @@ class _LoginState extends State<Login> {
                       fontWeight: FontWeight.w600),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.0,
+                  height: MediaQuery.of(context).size.height * 0.05,
                 ),
                 _buildContainer(),
               ],
@@ -345,7 +345,7 @@ class _LoginState extends State<Login> {
                   text: "Don't have an account ?",
                   style: TextStyle(
                       color: Colors.black,
-                      fontSize: MediaQuery.of(context).size.height / 40,
+                      fontSize: MediaQuery.of(context).size.width / 25,
                       fontWeight: FontWeight.w600,
                       letterSpacing: 1.0),
                 ),
@@ -353,7 +353,7 @@ class _LoginState extends State<Login> {
                   text: ' Sign Up',
                   style: TextStyle(
                     color: Color(0xFF200887),
-                    fontSize: MediaQuery.of(context).size.height / 38,
+                    fontSize: MediaQuery.of(context).size.width / 20,
                     fontWeight: FontWeight.w900,
                   ),
                 )
