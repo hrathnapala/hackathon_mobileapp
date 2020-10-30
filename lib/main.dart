@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon_app/screens/auth/Login.dart';
 import 'package:hackathon_app/screens/main_page.dart';
 
 void main() {
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Covid-Sentinel',
       debugShowCheckedModeBanner: false,
-      home: MainPage(),
+      home: Login(),
     );
   }
 }

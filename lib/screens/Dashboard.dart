@@ -56,7 +56,10 @@ class _DashboardState extends State<Dashboard> {
                 const BorderRadius.vertical(bottom: const Radius.circular(40)),
             child: Container(
               decoration: BoxDecoration(
-                  color: Colors.black,
+                  gradient: LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [Color(0xFF200887), Colors.black]),
                   image: DecorationImage(
                       image: AssetImage(
                     "assets/images/virus.png",
