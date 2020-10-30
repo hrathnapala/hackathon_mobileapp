@@ -67,6 +67,21 @@ class _DashboardState extends State<Dashboard> {
                       child: Stack(
                     children: [
                       Positioned(
+                        top: size.height * 0.01,
+                        right: 0,
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: SafeArea(
+                            child: SvgPicture.asset(
+                              "assets/images/exit.svg",
+                              width: size.width * 0.1,
+                              // fit: BoxFit.cover,
+                              // alignment: Alignment.bottomRight,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Positioned(
                         top: size.height * 0.1,
                         left: size.width * 0.04,
                         child: SvgPicture.asset(
@@ -214,7 +229,7 @@ class _DashboardState extends State<Dashboard> {
                         scrollDirection: Axis.horizontal,
                         child: Padding(
                           padding:
-                              const EdgeInsets.only(left: 30.0, right: 10.0),
+                              const EdgeInsets.only(left: 25.0, right: 10.0),
                           child: Row(
                             children: [
                               PreventionCard(
