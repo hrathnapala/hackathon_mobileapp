@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:button3d/button3d.dart';
 import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 import 'package:hackathon_app/service/api_service.dart' as api_service;
+import 'package:flutter_blue/flutter_blue.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -20,6 +21,7 @@ class _DashboardState extends State<Dashboard> {
   void initState() {
     super.initState();
     getDetails();
+    FlutterBlue.instance.stopScan();
   }
 
   Future getDetails() async {

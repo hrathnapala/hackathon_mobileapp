@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hackathon_app/screens/auth/Login.dart';
-import 'package:hackathon_app/screens/main_page.dart';
+import 'package:hackathon_app/screens/SplashScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Covid-Sentinel',
       debugShowCheckedModeBanner: false,
-      home: Login(),
+      home: SplashScreen(),
     );
   }
 }

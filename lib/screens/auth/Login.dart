@@ -110,7 +110,6 @@ class _LoginState extends State<Login> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                // _buildLogo(),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.1,
                 ),
@@ -119,11 +118,11 @@ class _LoginState extends State<Login> {
                   style: TextStyle(
                       letterSpacing: 2.5,
                       color: Colors.white,
-                      fontSize: 45,
+                      fontSize: 50,
                       fontWeight: FontWeight.w600),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.05,
+                  height: MediaQuery.of(context).size.height * 0.04,
                 ),
                 _buildContainer(),
               ],
@@ -147,8 +146,8 @@ class _LoginState extends State<Login> {
             width: MediaQuery.of(context).size.width * 0.9,
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
+                  begin: Alignment.bottomLeft,
+                  end: Alignment.topCenter,
                   colors: [Color(0xFF200887), Colors.white]),
             ),
             child: Column(
@@ -344,7 +343,7 @@ class _LoginState extends State<Login> {
                 TextSpan(
                   text: "Don't have an account ?",
                   style: TextStyle(
-                      color: Colors.black,
+                      color: Colors.white,
                       fontSize: MediaQuery.of(context).size.width / 25,
                       fontWeight: FontWeight.w600,
                       letterSpacing: 1.0),
@@ -352,9 +351,9 @@ class _LoginState extends State<Login> {
                 TextSpan(
                   text: ' Sign Up',
                   style: TextStyle(
-                    color: Color(0xFF200887),
+                    color: Colors.white,
                     fontSize: MediaQuery.of(context).size.width / 20,
-                    fontWeight: FontWeight.w900,
+                    fontWeight: FontWeight.w500,
                   ),
                 )
               ]),

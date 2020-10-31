@@ -21,8 +21,8 @@ class _MainPageState extends State<MainPage> {
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
+                begin: Alignment.bottomLeft,
+                end: Alignment.topRight,
                 colors: [Color(0xFF200887), Colors.black]),
           ),
           child: BottomNavigationBar(
