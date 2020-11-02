@@ -23,15 +23,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.0
-  flutter_svg: ^0.19.1
   button3d: ^0.1.1
-  http: any
-  shared_preferences:
-  url_launcher: ^5.7.0
+  cupertino_icons: ^1.0.0
+  firebase_analytics: ^5.0.2
+  firebase_auth: ^0.14.0+5
+  flushbar: ^1.10.4
   flutter_blue: ^0.7.2
+  flutter_svg: ^0.19.1
+  http: any
+  shared_preferences: null
   sliding_up_panel: ^1.0.2
-  
+  url_launcher: ^5.7.0
 
 dev_dependencies:
   flutter_test:

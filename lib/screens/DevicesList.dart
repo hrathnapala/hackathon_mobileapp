@@ -2,9 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
-import 'package:button3d/button3d.dart';
 
 class DevicesList extends StatefulWidget {
   @override

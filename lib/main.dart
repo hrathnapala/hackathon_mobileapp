@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hackathon_app/screens/Profile.dart';
 import 'package:hackathon_app/screens/SplashScreen.dart';
-import 'package:hackathon_app/screens/main_page.dart';
 
 void main() {
   runApp(MyApp());

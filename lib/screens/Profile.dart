@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hackathon_app/screens/auth/Login.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class Profile extends StatefulWidget {
@@ -202,7 +203,11 @@ class _ProfileState extends State<Profile> {
                   ? (MediaQuery.of(context).size.width - (2 * hPadding)) / 1.6
                   : double.infinity,
               child: FlatButton(
-                onPressed: () => print('Signout tapped'),
+                onPressed: () => {
+                  Navigator.pop(context),
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => Login())),
+                },
                 color: Colors.blue,
                 textColor: Colors.white,
                 shape: RoundedRectangleBorder(

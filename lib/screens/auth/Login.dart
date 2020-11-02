@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hackathon_app/screens/auth/SignUp.dart';
 import 'package:hackathon_app/screens/main_page.dart';
+import 'package:hackathon_app/widgets/info_snack.dart' as snack;
 
 class Login extends StatefulWidget {
   @override
@@ -8,11 +11,8 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  //  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  // final emailController = TextEditingController();
-  // final passwordController = TextEditingController();
-  // bool isDataLoading = false;
-  // bool shouldFormAutoValidate = false;
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   void initState() {
@@ -22,64 +22,22 @@ class _LoginState extends State<Login> {
   @override
   void dispose() {
     super.dispose();
-    // emailController.dispose();
-    // passwordController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
   }
 
-  void _doLogin() async {
-    // if (_formKey.currentState.validate()) {
-    //   // setState(() {
-    //   //   isDataLoading = true;
-    //   // });
-    //   // var body = {
-    //   //   "email": emailController.text,
-    //   //   "password": passwordController.text,
-    //   //   "role": "Doctor"
-    //   // };
-    //   // var attempLogin = LoginLogic();
-    //   // var result = await attempLogin.doLogin(context, body);
-    //   // if (result['status']) {
-    //   //   Navigator.pushReplacement(
-    //   //       context, MaterialPageRoute(builder: (_) => Dashboard()));
-    //   // }
-    //   try {
-    //     setState(() {
-    //       isDataLoading = true;
-    //     });
-    //     var body = {
-    //       "email": emailController.text,
-    //       "password": passwordController.text,
-    //       "role": "Doctor"
-    //     };
-    //     var response = await api_service.fetchPost("users/login", body);
-    //     if (response.statusCode == 200) {
-    //       var res = json.decode(response.body);
-    //       await shared_preferences.setAll(
-    //           res['token'],
-    //           res['data']['_id'],
-    //           res['data']['email'],
-    //           res['data']['first_name'],
-    //           res['data']['last_name']);
+  Future<FirebaseUser> _doLogin(String email, String password) async {
+    FirebaseAuth _auth = FirebaseAuth.instance;
+    try {
+      AuthResult result = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      FirebaseUser user = result.user;
 
-    //       Navigator.pushReplacement(
-    //           context, MaterialPageRoute(builder: (_) => NavigationHolder()));
-    //     } else {
-    //       setState(() {
-    //         isDataLoading = false;
-    //       });
-    //       var errorObj = json.decode(response.body);
-    //       snack.errorMsg(context, errorObj['msg'], 4);
-    //     }
-    //   } catch (e) {
-    //     setState(() {
-    //       isDataLoading = false;
-    //     });
-    //     snack.errorMsg(
-    //         context, "Something went wrong! may be a network error", 3);
-    //   }
-    // } else {
-    //   shouldFormAutoValidate = true;
-    // }
+      return user;
+    } on Exception catch (e) {
+      print(e);
+      return null;
+    }
   }
 
   @override
@@ -162,10 +120,9 @@ class _LoginState extends State<Login> {
                   height: 40,
                 ),
                 Form(
-                    // key: _formKey,
                     child: Column(
                   children: [
-                    Container(height: 70.0, child: buildUsername()),
+                    Container(height: 70.0, child: buildEmail()),
                     Container(height: 70.0, child: buildPassword()),
                   ],
                 )),
@@ -182,27 +139,13 @@ class _LoginState extends State<Login> {
     );
   }
 
-  Widget buildUsername() {
+  Widget buildEmail() {
     return Material(
-      // elevation: 20.0,
       shadowColor: Colors.white,
       color: Colors.transparent,
       child: TextFormField(
+        controller: emailController,
         style: TextStyle(color: Colors.white),
-        // controller: emailController,
-        validator: (value) {
-          if (value.isEmpty ||
-              !RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                  .hasMatch(value)) {
-            return 'Valid email is required';
-          }
-          return null;
-        },
-        onChanged: (val) {
-          // if (shouldFormAutoValidate) {
-          //   _formKey.currentState.validate();
-          // }
-        },
         autofocus: false,
         decoration: InputDecoration(
           prefixIcon: Icon(
@@ -236,24 +179,11 @@ class _LoginState extends State<Login> {
 
   Widget buildPassword() {
     return Material(
-      // elevation: 20.0,
-
       shadowColor: Colors.white,
       color: Colors.transparent,
       child: TextFormField(
         style: TextStyle(color: Colors.white),
-        // controller: passwordController,
-        validator: (value) {
-          if (value.isEmpty) {
-            return 'Password is required';
-          }
-          return null;
-        },
-        onChanged: (val) {
-          // if (shouldFormAutoValidate) {
-          //   _formKey.currentState.validate();
-          // }
-        },
+        controller: passwordController,
         obscureText: true,
         autofocus: false,
         decoration: InputDecoration(
@@ -292,11 +222,18 @@ class _LoginState extends State<Login> {
       child: RaisedButton(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(50.0),
-          // side: BorderSide(color: Colors.red)
         ),
-        onPressed: () {
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (_) => MainPage()));
+        onPressed: () async {
+          FirebaseUser user = await _doLogin(
+              emailController.text.trim().toString(),
+              passwordController.text.trim().toString());
+          if (user != null) {
+            Navigator.pop(context);
+            Navigator.push(
+                context, MaterialPageRoute(builder: (_) => MainPage()));
+          } else {
+            snack.errorMsg(context, "Login Error", 3);
+          }
         },
         color: Color(0xFF200887),
         textColor: Colors.white,
@@ -309,7 +246,6 @@ class _LoginState extends State<Login> {
   }
 
   Widget setUpButtonChild() {
-    // if (!isDataLoading) {
     return Container(
       width: MediaQuery.of(context).size.width,
       child: Text("Login",
@@ -320,11 +256,6 @@ class _LoginState extends State<Login> {
             fontSize: MediaQuery.of(context).size.height / 40,
           )),
     );
-    // } else {
-    //   return CircularProgressIndicator(
-    //     valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-    //   );
-    // }
   }
 
   Widget _buildSignUpBtn() {
@@ -335,8 +266,9 @@ class _LoginState extends State<Login> {
           padding: EdgeInsets.only(top: 0),
           child: FlatButton(
             onPressed: () {
-              // Navigator.push(
-              //     context, MaterialPageRoute(builder: (_) => ()));
+              Navigator.pop(context);
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (_) => SignUp()));
             },
             child: RichText(
               text: TextSpan(children: [
