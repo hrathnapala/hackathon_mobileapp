@@ -34,8 +34,8 @@ class _SignUpState extends State<SignUp> {
       UserUpdateInfo info = UserUpdateInfo();
       user.updateProfile(info);
       return true;
-    } on Exception catch (e) {
-      print(e);
+    } catch (e) {
+      snack.errorMsg(context, e.message, 3, "Sign Up Error");
       return false;
     }
   }
@@ -239,8 +239,6 @@ class _SignUpState extends State<SignUp> {
           if (result) {
             Navigator.pop(context);
             Navigator.push(context, MaterialPageRoute(builder: (_) => Login()));
-          } else {
-            snack.errorMsg(context, "Signup Error", 3);
           }
         },
         color: Color(0xFF200887),

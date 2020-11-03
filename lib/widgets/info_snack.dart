@@ -17,20 +17,29 @@ void successMsg(context, String msg, int displayTime) {
   )..show(context);
 }
 
-void errorMsg(context, String msg, int displayTime) {
+void errorMsg(context, String msg, int displayTime, String title) {
   Flushbar(
     flushbarPosition: FlushbarPosition.TOP,
     flushbarStyle: FlushbarStyle.GROUNDED,
-    // leftBarIndicatorColor: Colors.white,s
-    // title: "Error",
+    leftBarIndicatorColor: Colors.red,
+    titleText: Text(
+      title,
+      style: TextStyle(
+          color: Colors.white, fontWeight: FontWeight.w500, letterSpacing: 1.5),
+    ),
     icon: Icon(
-      Icons.error_outline,
+      Icons.error,
       color: Colors.white,
     ),
-    message: msg,
+
+    messageText: Text(
+      msg,
+      style: TextStyle(
+          color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1.5),
+    ),
     duration: Duration(seconds: displayTime),
     // backgroundColor: Color(0xffA240A4),
-    backgroundColor: Colors.red,
+    backgroundColor: Colors.blueGrey,
   )..show(context);
 }
 

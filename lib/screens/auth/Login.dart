@@ -34,8 +34,8 @@ class _LoginState extends State<Login> {
       FirebaseUser user = result.user;
 
       return user;
-    } on Exception catch (e) {
-      print(e);
+    } catch (e) {
+      snack.errorMsg(context, e.message, 3, "Login Error");
       return null;
     }
   }
@@ -231,8 +231,6 @@ class _LoginState extends State<Login> {
             Navigator.pop(context);
             Navigator.push(
                 context, MaterialPageRoute(builder: (_) => MainPage()));
-          } else {
-            snack.errorMsg(context, "Login Error", 3);
           }
         },
         color: Color(0xFF200887),
